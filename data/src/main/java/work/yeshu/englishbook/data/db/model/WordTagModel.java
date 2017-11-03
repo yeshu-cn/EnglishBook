@@ -6,5 +6,5 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
  * Created by yeshu on 2017/11/3.
  * desc:
  */
-public class PhraseModel extends BaseModel{
+public class WordTagModel extends BaseModel{
 }
