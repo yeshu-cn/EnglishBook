@@ -7,13 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import work.yeshu.englishbook.R;
+import work.yeshu.englishbook.ui.model.WordTagViewModel;
 
 /**
  * Created by yeshu on 2017/11/7.
  * desc:
  */
-public class WordTagListFragment extends Fragment {
+public class WordTagListFragment extends Fragment implements WordTagListContract.View{
+    private WordTagListContract.Presenter mPresenter;
+
 
     public static WordTagListFragment newInstance() {
         
@@ -28,6 +33,23 @@ public class WordTagListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_word_tag_list, container, false);
+        mPresenter = new WordTagListPresenter(this);
+        mPresenter.loadWordTagList();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void showWordTagList(List<WordTagViewModel> list) {
+
+    }
+
+    @Override
+    public void setPresenter(WordTagListContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }

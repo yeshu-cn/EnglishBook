@@ -45,8 +45,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
-
     implementation 'com.annimon:stream:1.1.9'
-
     implementation project(':domain')
+    implementation project(':data')
 }

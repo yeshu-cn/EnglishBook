@@ -17,7 +17,7 @@
 package work.yeshu.englishbook.base;
 
 public interface BasePresenter {
+    void subscribe();
 
-    void start();
-
+    void unsubscribe();
 }

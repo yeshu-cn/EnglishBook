@@ -10,4 +10,10 @@ public class WordViewModel {
     public String notes;
     public String tagId;
 
+    public WordViewModel(String id, String spell, String notes, String tagId) {
+        this.id = id;
+        this.spell = spell;
+        this.notes = notes;
+        this.tagId = tagId;
+    }
 }

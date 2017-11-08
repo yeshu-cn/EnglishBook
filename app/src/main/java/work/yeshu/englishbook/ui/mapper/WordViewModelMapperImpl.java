@@ -1,5 +1,7 @@
 package work.yeshu.englishbook.ui.mapper;
 
+import com.annimon.stream.Stream;
+
 import java.util.List;
 
 import work.yeshu.englishbook.domain.model.Word;
@@ -14,21 +16,25 @@ import work.yeshu.englishbook.ui.model.WordViewModel;
 public class WordViewModelMapperImpl implements WordViewModelMapper {
     @Override
     public WordViewModel mapWordToViewModel(Word word) {
-        return null;
+        return new WordViewModel(word.id, word.spell, word.notes, word.tagId);
     }
 
     @Override
     public List<WordViewModel> mapWordsToViewModels(List<Word> words) {
-        return null;
+        return Stream.of(words)
+                .map(this::mapWordToViewModel)
+                .toList();
     }
 
     @Override
     public WordTagViewModel mapWordTagToViewModel(WordTag wordTag) {
-        return null;
+        return new WordTagViewModel(wordTag.id, wordTag.name);
     }
 
     @Override
     public List<WordTagViewModel> mapWordTagsToViewModels(List<WordTag> wordTags) {
-        return null;
+        return Stream.of(wordTags)
+                .map(this::mapWordTagToViewModel)
+                .toList();
     }
 }
