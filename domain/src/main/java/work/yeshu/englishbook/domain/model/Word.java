@@ -10,5 +10,10 @@ public class Word {
     public String notes;
     public String tagId;
 
-
+    public Word(String id, String spell, String notes, String tagId) {
+        this.id = id;
+        this.spell = spell;
+        this.notes = notes;
+        this.tagId = tagId;
+    }
 }

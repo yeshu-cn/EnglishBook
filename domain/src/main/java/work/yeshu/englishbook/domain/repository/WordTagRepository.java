@@ -17,5 +17,5 @@ public interface WordTagRepository {
 
     Completable deleteWordTag(String id);
 
-    Completable updateWordTag(String name);
+    Completable updateWordTag(WordTag wordTag);
 }

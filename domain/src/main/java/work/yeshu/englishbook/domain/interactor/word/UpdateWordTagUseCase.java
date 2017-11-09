@@ -2,13 +2,14 @@ package work.yeshu.englishbook.domain.interactor.word;
 
 import io.reactivex.Completable;
 import work.yeshu.englishbook.domain.interactor.type.CompletableUseCaseWithParameter;
+import work.yeshu.englishbook.domain.model.WordTag;
 import work.yeshu.englishbook.domain.repository.WordTagRepository;
 
 /**
  * Created by yeshu on 2017/11/1.
  */
 
-public class UpdateWordTagUseCase implements CompletableUseCaseWithParameter<String>{
+public class UpdateWordTagUseCase implements CompletableUseCaseWithParameter<WordTag>{
     private final WordTagRepository mWordTagRepository;
 
     public UpdateWordTagUseCase(WordTagRepository wordTagRepository) {
@@ -16,7 +17,7 @@ public class UpdateWordTagUseCase implements CompletableUseCaseWithParameter<Str
     }
 
     @Override
-    public Completable execute(String name) {
-        return mWordTagRepository.updateWordTag(name);
+    public Completable execute(WordTag wordTag) {
+        return mWordTagRepository.updateWordTag(wordTag);
     }
 }

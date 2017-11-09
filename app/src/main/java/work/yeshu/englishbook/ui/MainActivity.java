@@ -1,12 +1,12 @@
 package work.yeshu.englishbook.ui;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import work.yeshu.englishbook.R;
@@ -14,7 +14,7 @@ import work.yeshu.englishbook.ui.phrase.PhraseTagListFragment;
 import work.yeshu.englishbook.ui.profile.ProfileFragment;
 import work.yeshu.englishbook.ui.word.WordTagListFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private Fragment mWordTagListFragment;
     private Fragment mPhraseTagListFragment;
@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        showTab(mWordTagListFragment);
     }
 
     private void showTab(Fragment fragment) {

@@ -12,6 +12,7 @@ import work.yeshu.englishbook.domain.repository.WordRepository;
  * desc:
  */
 public class WordRepositoryImpl implements WordRepository{
+
     @Override
     public Single<List<Word>> getWordListByTag(String tagId) {
         return null;

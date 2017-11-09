@@ -19,4 +19,14 @@ public class WordModel extends BaseModel {
     public String spell;
     public String notes;
     public String tagId;
+
+    public WordModel() {
+    }
+
+    public WordModel(String id, String spell, String notes, String tagId) {
+        this.id = id;
+        this.spell = spell;
+        this.notes = notes;
+        this.tagId = tagId;
+    }
 }

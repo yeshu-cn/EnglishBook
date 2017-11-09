@@ -21,5 +21,7 @@ public class WordTagListContract {
     interface Presenter extends BasePresenter {
 
         void loadWordTagList();
+
+        void addWordTag(String name);
     }
 }

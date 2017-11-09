@@ -16,4 +16,7 @@ public class PhraseTagModel {
     @PrimaryKey
     public String id;
     public String name;
+
+    public PhraseTagModel() {
+    }
 }

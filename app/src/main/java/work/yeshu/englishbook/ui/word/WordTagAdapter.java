@@ -22,6 +22,13 @@ public class WordTagAdapter extends RecyclerView.Adapter<WordTagAdapter.ViewHold
         mData = data;
     }
 
+    public void updateData(List<WordTagViewModel> data) {
+        if (null != data) {
+            mData = data;
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_word_tag, parent, false);

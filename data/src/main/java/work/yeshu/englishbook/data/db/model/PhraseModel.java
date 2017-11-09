@@ -11,6 +11,7 @@ import work.yeshu.englishbook.data.db.definition.AppDatabase;
  * desc:
  */
 
+//所有的Model都必须有一个公共无参构造。在查询时我们将会使用到这个构造函数
 @Table(database = AppDatabase.class, allFields = true)
 public class PhraseModel extends BaseModel{
 
@@ -19,4 +20,7 @@ public class PhraseModel extends BaseModel{
     public String content;
     public String notes;
     public String tagId;
+
+    public PhraseModel() {
+    }
 }
