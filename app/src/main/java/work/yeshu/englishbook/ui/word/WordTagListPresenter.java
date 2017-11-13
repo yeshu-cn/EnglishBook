@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
@@ -45,7 +46,7 @@ public class WordTagListPresenter implements WordTagListContract.Presenter {
         mCompositeDisposable.add(mGetWordTagListUseCase.execute()
                                         .map(mWordViewModelMapper::mapWordTagsToViewModels)
                                         .subscribeOn(Schedulers.io())
-                                        .observeOn(Schedulers.trampoline())
+                                        .observeOn(AndroidSchedulers.mainThread())
                                         .doOnSuccess(new Consumer<List<WordTagViewModel>>() {
             @Override
             public void accept(List<WordTagViewModel> list) throws Exception {
@@ -67,13 +68,13 @@ public class WordTagListPresenter implements WordTagListContract.Presenter {
         */
         Log.i(TAG, "---->" + Thread.currentThread().getId());
         mCompositeDisposable.add(mAddWordTagUseCase.execute(name)
-                                                    .observeOn(Schedulers.io())
+                                                    .subscribeOn(Schedulers.io())
+                                                    .observeOn(AndroidSchedulers.mainThread())
                                                     .subscribe(new Action() {
             @Override
             public void run() throws Exception {
-                Log.i(TAG, "add word tag success");
                 Log.i(TAG, "add word return thread ---->" + Thread.currentThread().getId());
-                //loadWordTagList();
+                loadWordTagList();
             }
         }));
     }

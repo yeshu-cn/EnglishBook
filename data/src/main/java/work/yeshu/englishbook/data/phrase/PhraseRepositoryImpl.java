@@ -1,9 +1,15 @@
 package work.yeshu.englishbook.data.phrase;
 
+import com.annimon.stream.Stream;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+
 import java.util.List;
 
 import io.reactivex.Completable;
-import work.yeshu.englishbook.domain.interactor.type.SingleUseCase;
+import io.reactivex.Single;
+import work.yeshu.englishbook.data.converter.PhraseModelConverter;
+import work.yeshu.englishbook.data.db.model.PhraseModel;
+import work.yeshu.englishbook.data.db.model.PhraseModel_Table;
 import work.yeshu.englishbook.domain.model.Phrase;
 import work.yeshu.englishbook.domain.repository.PhraseRepository;
 
@@ -12,23 +18,46 @@ import work.yeshu.englishbook.domain.repository.PhraseRepository;
  * desc:
  */
 public class PhraseRepositoryImpl implements PhraseRepository {
-    @Override
-    public Completable addPhrase(String content, String notes) {
-        return null;
+
+    private PhraseModelConverter mPhraseModelConverter;
+
+    public PhraseRepositoryImpl(PhraseModelConverter phraseModelConverter) {
+        mPhraseModelConverter = phraseModelConverter;
     }
 
     @Override
-    public Completable updatePhrase(String notes) {
-        return null;
+    public Completable addPhrase(Phrase phrase) {
+        return Completable.fromAction(() -> {
+            mPhraseModelConverter.domainToPhraseModel(phrase).save();
+        });
+    }
+
+    @Override
+    public Completable updatePhrase(Phrase phrase) {
+        return Completable.fromAction(() -> {
+            mPhraseModelConverter.domainToPhraseModel(phrase).update();
+        });
     }
 
     @Override
     public Completable deletePhrase(String id) {
-        return null;
+        return Completable.fromAction(() -> {
+            innerDelete(id);
+        });
     }
 
     @Override
-    public SingleUseCase<List<Phrase>> getPhraseListByTag(String tagId) {
-        return null;
+    public Single<List<Phrase>> getPhraseListByTag(String tagId) {
+        List<PhraseModel> phraseModelList = SQLite.select().from(PhraseModel.class).where(PhraseModel_Table.tagId.eq(tagId)).queryList();
+        return Single.just(Stream.of(phraseModelList).map(mPhraseModelConverter::phraseModelToDomain).toList());
+    }
+
+    private boolean innerDelete(String id) {
+        PhraseModel model = SQLite.select().from(PhraseModel.class).where(PhraseModel_Table.id.eq(id)).querySingle();
+        if (null == model) {
+            return false;
+        }
+
+        return model.delete();
     }
 }

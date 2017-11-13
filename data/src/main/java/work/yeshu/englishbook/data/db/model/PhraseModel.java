@@ -23,4 +23,13 @@ public class PhraseModel extends BaseModel{
 
     public PhraseModel() {
     }
+
+
+
+    public PhraseModel(String id, String content, String notes, String tagId) {
+        this.id = id;
+        this.content = content;
+        this.notes = notes;
+        this.tagId = tagId;
+    }
 }

@@ -23,6 +23,8 @@ public class WordModel extends BaseModel {
     public WordModel() {
     }
 
+
+
     public WordModel(String id, String spell, String notes, String tagId) {
         this.id = id;
         this.spell = spell;

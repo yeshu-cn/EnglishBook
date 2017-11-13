@@ -3,7 +3,7 @@ package work.yeshu.englishbook.domain.repository;
 import java.util.List;
 
 import io.reactivex.Completable;
-import work.yeshu.englishbook.domain.interactor.type.SingleUseCase;
+import io.reactivex.Single;
 import work.yeshu.englishbook.domain.model.Phrase;
 
 /**
@@ -11,11 +11,11 @@ import work.yeshu.englishbook.domain.model.Phrase;
  */
 
 public interface PhraseRepository {
-    Completable addPhrase(String content, String notes);
+    Completable addPhrase(Phrase phrase);
 
-    Completable updatePhrase(String notes);
+    Completable updatePhrase(Phrase phrase);
 
     Completable deletePhrase(String id);
 
-    SingleUseCase<List<Phrase>> getPhraseListByTag(String tagId);
+    Single<List<Phrase>> getPhraseListByTag(String tagId);
 }

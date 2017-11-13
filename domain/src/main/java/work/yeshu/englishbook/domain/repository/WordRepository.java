@@ -14,9 +14,9 @@ public interface WordRepository {
 
     Single<List<Word>> getWordListByTag(String tagId);
 
-    Completable updateWord(String notes);
+    Completable updateWord(Word word);
 
-    Completable addWord(String spell, String notes);
+    Completable addWord(Word word);
 
     Completable deleteWord(String id);
 }

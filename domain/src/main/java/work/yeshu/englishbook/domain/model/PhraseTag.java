@@ -7,4 +7,9 @@ package work.yeshu.englishbook.domain.model;
 public class PhraseTag {
     public String id;
     public String name;
+
+    public PhraseTag(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

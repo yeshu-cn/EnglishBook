@@ -10,4 +10,10 @@ public class Phrase {
     public String notes;
     public String tagId;
 
+    public Phrase(String id, String content, String notes, String tagId) {
+        this.id = id;
+        this.content = content;
+        this.notes = notes;
+        this.tagId = tagId;
+    }
 }

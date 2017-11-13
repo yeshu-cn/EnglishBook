@@ -14,7 +14,7 @@ public interface PhraseTagRepository {
 
     Completable addPhraseTag(String name);
 
-    Completable updatePhraseTag(String name);
+    Completable updatePhraseTag(PhraseTag phraseTag);
 
     Single<List<PhraseTag>> getPhraseTagList();
 

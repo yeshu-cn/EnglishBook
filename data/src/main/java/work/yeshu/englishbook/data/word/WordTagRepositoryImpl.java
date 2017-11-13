@@ -35,8 +35,8 @@ public class WordTagRepositoryImpl implements WordTagRepository {
     public Single<List<WordTag>> getWordTagList() {
         List<WordTagModel> data = SQLite.select().from(WordTagModel.class).queryList();
         return Single.just(Stream.of(data)
-                                    .map(mWordModelConverter::wordTagModelToDomain)
-                                    .collect(Collectors.toList()));
+                .map(mWordModelConverter::wordTagModelToDomain)
+                .collect(Collectors.toList()));
     }
 
     @Override
