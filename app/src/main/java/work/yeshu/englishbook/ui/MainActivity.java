@@ -1,6 +1,5 @@
 package work.yeshu.englishbook.ui;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -10,11 +9,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
 import work.yeshu.englishbook.R;
+import work.yeshu.englishbook.base.BaseActivity;
 import work.yeshu.englishbook.ui.phrase.PhraseTagListFragment;
 import work.yeshu.englishbook.ui.profile.ProfileFragment;
 import work.yeshu.englishbook.ui.word.WordTagListFragment;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private Fragment mWordTagListFragment;
     private Fragment mPhraseTagListFragment;

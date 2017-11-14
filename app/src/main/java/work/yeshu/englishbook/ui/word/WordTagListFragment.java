@@ -1,15 +1,20 @@
 package work.yeshu.englishbook.ui.word;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +28,6 @@ import work.yeshu.englishbook.ui.model.WordTagViewModel;
  */
 public class WordTagListFragment extends Fragment implements WordTagListContract.View{
     private WordTagListContract.Presenter mPresenter;
-    private EditText mInputTagName;
-    private Button mBtnAddTag;
     private WordTagAdapter mWordTagAdapter;
 
     public static WordTagListFragment newInstance() {
@@ -40,9 +43,6 @@ public class WordTagListFragment extends Fragment implements WordTagListContract
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_word_tag_list, container, false);
-        mInputTagName = view.findViewById(R.id.input_tag_name);
-        mBtnAddTag = view.findViewById(R.id.btn_add_tag);
-
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -53,14 +53,11 @@ public class WordTagListFragment extends Fragment implements WordTagListContract
         mPresenter = new WordTagListPresenter(this);
         mPresenter.subscribe();
 
-        mBtnAddTag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.addWordTag(mInputTagName.getText().toString().trim());
-            }
-        });
-
-
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle("Word Tag List");
+        toolbar.setTitleTextColor(Color.WHITE);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -73,6 +70,19 @@ public class WordTagListFragment extends Fragment implements WordTagListContract
     public void onDestroy() {
         super.onDestroy();
         mPresenter.unsubscribe();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_word_tag_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(getActivity(), AddWordTagActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     @Override

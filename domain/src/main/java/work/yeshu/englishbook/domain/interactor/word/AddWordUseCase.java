@@ -18,6 +18,6 @@ public class AddWordUseCase implements CompletableUseCaseWithParameter<Word>{
 
     @Override
     public Completable execute(Word word) {
-        return mWordRepository.addWord(word.spell, word.notes);
+        return mWordRepository.addWord(word);
     }
 }
