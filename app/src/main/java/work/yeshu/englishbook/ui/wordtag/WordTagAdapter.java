@@ -1,4 +1,4 @@
-package work.yeshu.englishbook.ui.word;
+package work.yeshu.englishbook.ui.wordtag;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +17,11 @@ import work.yeshu.englishbook.ui.model.WordTagViewModel;
  */
 public class WordTagAdapter extends RecyclerView.Adapter<WordTagAdapter.ViewHolder> {
     private List<WordTagViewModel> mData;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(WordTagViewModel wordTagViewModel);
+    }
 
     public WordTagAdapter(List<WordTagViewModel> data) {
         mData = data;
@@ -37,7 +42,16 @@ public class WordTagAdapter extends RecyclerView.Adapter<WordTagAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textName.setText(mData.get(position).name);
+        final WordTagViewModel wordTag = mData.get(position);
+        holder.textName.setText(wordTag.name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    mListener.onItemClick(wordTag);
+                }
+            }
+        });
     }
 
     @Override
@@ -52,5 +66,9 @@ public class WordTagAdapter extends RecyclerView.Adapter<WordTagAdapter.ViewHold
             super(itemView);
             textName = itemView.findViewById(R.id.text_name);
         }
+    }
+
+    public void setListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 }

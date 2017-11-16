@@ -1,4 +1,4 @@
-package work.yeshu.englishbook.ui.phrase;
+package work.yeshu.englishbook.ui.phrasetag;
 
 import android.app.Fragment;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package work.yeshu.englishbook.ui.word;
+package work.yeshu.englishbook.ui.wordtag;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -21,19 +21,20 @@ import java.util.List;
 
 import work.yeshu.englishbook.R;
 import work.yeshu.englishbook.ui.model.WordTagViewModel;
+import work.yeshu.englishbook.ui.wordtag.detail.WordTagDetailActivity;
 
 /**
  * Created by yeshu on 2017/11/7.
  * desc:
  */
-public class WordTagListFragment extends Fragment implements WordTagListContract.View{
+public class WordTagListFragment extends Fragment implements WordTagListContract.View {
     private WordTagListContract.Presenter mPresenter;
     private WordTagAdapter mWordTagAdapter;
 
     public static WordTagListFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         WordTagListFragment fragment = new WordTagListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -49,6 +50,12 @@ public class WordTagListFragment extends Fragment implements WordTagListContract
         recyclerView.setLayoutManager(linearLayoutManager);
         mWordTagAdapter = new WordTagAdapter(new ArrayList<>(0));
         recyclerView.setAdapter(mWordTagAdapter);
+        mWordTagAdapter.setListener(new WordTagAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(WordTagViewModel wordTagViewModel) {
+                WordTagDetailActivity.start(getActivity(), wordTagViewModel.id);
+            }
+        });
 
         mPresenter = new WordTagListPresenter(this);
         mPresenter.subscribe();
@@ -56,7 +63,7 @@ public class WordTagListFragment extends Fragment implements WordTagListContract
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         toolbar.setTitle("Word Tag List");
         toolbar.setTitleTextColor(Color.WHITE);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
         return view;
     }

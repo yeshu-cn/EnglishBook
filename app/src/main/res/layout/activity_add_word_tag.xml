@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="work.yeshu.englishbook.ui.word.AddWordTagActivity">
+    tools:context="work.yeshu.englishbook.ui.wordtag.AddWordTagActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"

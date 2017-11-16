@@ -1,4 +1,4 @@
-package work.yeshu.englishbook.ui.phrase;
+package work.yeshu.englishbook.ui.phrasetag;
 
 /**
  * Created by yeshu on 2017/11/7.

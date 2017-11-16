@@ -20,10 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.word.AddWordTagActivity"
+        <activity
+            android:name=".ui.wordtag.AddWordTagActivity"
             android:parentActivityName=".ui.MainActivity">
         </activity>
-        <activity android:name=".ui.word.AddWordActivity">
+        <activity android:name=".ui.wordtag.AddWordActivity">
+        </activity>
+        <activity android:name=".ui.wordtag.detail.WordTagDetailActivity">
         </activity>
     </application>
 

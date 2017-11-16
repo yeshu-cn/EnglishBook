@@ -1,4 +1,4 @@
-package work.yeshu.englishbook.ui.phrase;
+package work.yeshu.englishbook.ui.phrasetag;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

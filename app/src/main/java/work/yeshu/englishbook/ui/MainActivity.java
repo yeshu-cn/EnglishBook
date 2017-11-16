@@ -10,9 +10,9 @@ import android.view.MenuItem;
 
 import work.yeshu.englishbook.R;
 import work.yeshu.englishbook.base.BaseActivity;
-import work.yeshu.englishbook.ui.phrase.PhraseTagListFragment;
+import work.yeshu.englishbook.ui.phrasetag.PhraseTagListFragment;
 import work.yeshu.englishbook.ui.profile.ProfileFragment;
-import work.yeshu.englishbook.ui.word.WordTagListFragment;
+import work.yeshu.englishbook.ui.wordtag.WordTagListFragment;
 
 public class MainActivity extends BaseActivity {
 

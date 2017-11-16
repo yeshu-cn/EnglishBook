@@ -1,4 +1,4 @@
-package work.yeshu.englishbook.ui.word;
+package work.yeshu.englishbook.ui.wordtag;
 
 import android.util.Log;
 
